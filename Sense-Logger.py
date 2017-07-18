@@ -31,6 +31,7 @@ def file_setup(filename):
 
 ## MAIN PROGRAM ##
 sense = SenseHat()
+
 batch_data= []
 
 if FILENAME == "":
@@ -44,9 +45,9 @@ while True:
   sense_data = get_sense_data()
   log_data()
 
-if len(batch_data) >= WRITE_FREQUENCY:
-    print("Writing to file..")
-    with open(filename,"a") as f:
-        for line in batch_data:
-            f.write(line + "\n")
-        batch_data = []
+  if len(batch_data) >= WRITE_FREQUENCY:
+      print("Writing to file..")
+      with open(filename,"a") as f:
+          for line in batch_data:
+              f.write(line + "\n")
+          batch_data = []
