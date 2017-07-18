@@ -1,23 +1,22 @@
 from sense_hat import SenseHat
-import csv
-sense = SenseHat()
+from datetime import datetime
 
-while True:
-    t = sense.get_temperature()
-    p = sense.get_pressure()
-    h = sense.get_humidity()
+def get_sense_data():
+  sense_data=[]
 
-    t = round(t, 1)
-    p = round(p, 1)
-    h = round(h, 1)
+  sense_data.append(sense.get_temperature_from_humidity())
+  sense_data.append(sense.get_temperature_from_pressure())
+  sense_data.append(sense.get_humidity())
+  sense_data.append(sense.get_pressure())
 
-    data = (t,p,h)
+  sense_data.append(datetime.now())
 
-with open(data.csv, "wb") as csv_file:
-        writer = csv.writer(csv_file, delimiter=',')
-        for line in data:
-            writer.writerow(line)
+  return sense_data
 
-    # msg = "Temperature = {0}, Pressure = {1}, Humidity = {2}".format(t,p,h)
+def main():
 
-    # sense.show_message(msg, scroll_speed=0.05)
+  sense = SenseHat()
+
+  while True:
+    sense_data = get_sense_data()
+    print(sense_data)
