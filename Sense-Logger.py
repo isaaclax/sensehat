@@ -41,8 +41,8 @@ else:
 file_setup(filename)
 
 while True:
-sense_data = get_sense_data()
-log_data()
+  sense_data = get_sense_data()
+  log_data()
 
 if len(batch_data) >= WRITE_FREQUENCY:
     print("Writing to file..")
