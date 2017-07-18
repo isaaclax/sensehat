@@ -13,7 +13,7 @@ while True:
 
     data = (t,p,h)
 
-with open(<data.csv>, "wb") as csv_file:
+with open(data.csv, "wb") as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         for line in data:
             writer.writerow(line)
