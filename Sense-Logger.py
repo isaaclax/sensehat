@@ -30,24 +30,23 @@ def file_setup(filename):
       f.write(",".join(str(value) for value in header)+ "\n")
 
 ## MAIN PROGRAM ##
-def main():
-  sense = SenseHat()
-  batch_data= []
+sense = SenseHat()
+batch_data= []
 
-  if FILENAME == "":
-    filename = "SenseLog-"+str(datetime.now())+".csv"
-  else:
-    filename = FILENAME+"-"+str(datetime.now())+".csv"
+if FILENAME == "":
+  filename = "SenseLog-"+str(datetime.now())+".csv"
+else:
+  filename = FILENAME+"-"+str(datetime.now())+".csv"
 
-  file_setup(filename)
+file_setup(filename)
 
-  while True:
-  sense_data = get_sense_data()
-  log_data()
+while True:
+sense_data = get_sense_data()
+log_data()
 
-  if len(batch_data) >= WRITE_FREQUENCY:
-      print("Writing to file..")
-      with open(filename,"a") as f:
-          for line in batch_data:
-              f.write(line + "\n")
-          batch_data = []
+if len(batch_data) >= WRITE_FREQUENCY:
+    print("Writing to file..")
+    with open(filename,"a") as f:
+        for line in batch_data:
+            f.write(line + "\n")
+        batch_data = []
